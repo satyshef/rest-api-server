@@ -18,16 +18,6 @@ type APIServer struct {
 
 // Create new APIServer instance
 func New(conf *Config) *APIServer {
-	/*
-		srv := &http.Server{
-			Addr:           ":" + port,
-			Handler:        handler,
-			MaxHeaderBytes: 1 << 20, // 1 MB
-			ReadTimeout:    10 * time.Second,
-			WriteTimeout:   10 * time.Second,
-		}
-
-	*/
 	return &APIServer{
 		config: conf,
 		logger: logrus.New(),
@@ -69,6 +59,7 @@ func (a *APIServer) handlerMain() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		result := fmt.Sprintf("Method: %s\n", r.Method)
 		result += fmt.Sprintf("Request: %s\n", r.URL.Path)
+		result += fmt.Sprintf("Header: %#v\n", r.Header)
 		result += "Params:\n"
 		m, _ := url.ParseQuery(r.URL.RawQuery)
 		for key, value := range m {
