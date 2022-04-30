@@ -9,4 +9,4 @@ fi
 
 docker build --build-arg APP_NAME=restapi  --build-arg CONF_NAME=restapi.toml -t $REPNAME .
 
-docker image prune --filter label=stage=builder
+docker image prune --filter label=stage=builder -f
