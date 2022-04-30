@@ -1,12 +1,18 @@
 #!/bin/bash
 
-REPNAME=$1
+IMAGENAME=$1
 
-if [ -z "${REPNAME}" ];then
+if [ -z "${IMAGENAME}" ];then
     echo "Repository name not set"
     exit 1
 fi
 
-docker build --build-arg APP_NAME=restapi  --build-arg CONF_NAME=restapi.toml -t $REPNAME .
+R=$(docker images | grep $IMAGENAME)
+if [ ! -z "${R}" ];then
+        echo "Remove previous version"
+        docker rmi $IMAGENAME
+fi
+
+docker build --build-arg APP_NAME=restapi  --build-arg CONF_NAME=restapi.toml -t $IMAGENAME .
 
 docker image prune --filter label=stage=builder -f
