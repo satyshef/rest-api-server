@@ -30,7 +30,7 @@ func (a *APIServer) Run() error {
 	if err := a.initLogger(); err != nil {
 		return err
 	}
-	a.logger.Info("Starting API server...")
+	a.logger.Info("Starting API server 2...")
 	a.initRouter()
 	return a.router.ListenAndServe()
 }
