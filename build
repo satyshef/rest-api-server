@@ -2,7 +2,7 @@
 
 REPNAME=$1
 
-if [ -z {$REPNAME} ];then
+if [ -z "${REPNAME}" ];then
     echo "Repository name not set"
     exit 1
 fi
