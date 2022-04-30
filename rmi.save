@@ -1,3 +1,0 @@
-a!#/bin/bash
-
-docker image prune - -filter label=stage=builder 

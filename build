@@ -1,4 +1,10 @@
 #!/bin/bash
 
+REPNAME=$1
 
-docker build --build-arg APP_NAME=restapi  --build-arg CONF_NAME=restapi.toml -t api .
+if [ -z {$REPNAME} ];then
+    echo "Repository name not set"
+    exit 1
+fi
+
+docker build --build-arg APP_NAME=restapi  --build-arg CONF_NAME=restapi.toml -t $REPNAME .
