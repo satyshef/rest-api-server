@@ -7,8 +7,6 @@ if [ -z "${IMAGE_NAME}" ];then
     exit 1
 fi
 
-#R=$(docker images | grep $IMAGE_NAME)
-
 if [ ! -z "(docker images | grep $IMAGE_NAME)" ];then
         echo "Remove previous version"
         docker rmi $IMAGE_NAME
