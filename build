@@ -13,5 +13,4 @@ if [ ! -z "(docker images | grep $IMAGE_NAME)" ];then
 fi
 
 docker build --build-arg APP_NAME=restapi  --build-arg CONF_NAME=restapi.toml -t $IMAGE_NAME .
-
 docker image prune --filter label=stage=builder -f
