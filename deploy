@@ -2,16 +2,15 @@
 
 IMAGE_NAME=$1
 
-if [ -x "$(command -v docker)" ]; then
+if [ ! -x "$(command -v docker)" ]; then
+    echo "Install docker"
+    sudo apt update
+    sudo apt install -y docker.io
+    sudo systemctl start docker.service
+    sudo systemctl enable docker.service
+fi
+
     echo "Deploy application"
     docker run -it -p 443:7000 --rm --name api-server $IMAGE_NAME
-    exit 0
-else
-    echo "Install docker"
-    apt update
-    apt install docker.io
-    systemctl start docker.service
-    systemctl enable docker.service
-fi
 
 
