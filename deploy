@@ -2,9 +2,16 @@
 
 IMAGE_NAME=$1
 
-if [ -z "(systemctl status docker | grep running)" ];then
-        echo "Docker not installed"
-        exit 1
+if [ -x "$(command -v docker)" ]; then
+    echo "Deploy application"
+    docker run -it -p 443:7000 --rm --name api-server $IMAGE_NAME
+    exit 0
+else
+    echo "Install docker"
+    apt update
+    apt install docker.io
+    systemctl start docker.service
+    systemctl enable docker.service
 fi
 
-docker run -it -p 443:7000 --rm --name api-server $IMAGE_NAME
+
