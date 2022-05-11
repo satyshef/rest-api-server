@@ -1,5 +1,0 @@
-#!/bin/bash
-
-#docker image prune -f
-docker image prune --filter label=stage=builder
-docker rmi api
