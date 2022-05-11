@@ -2,4 +2,9 @@
 
 IMAGE_NAME=$1
 
+if [ -z "(systemctl status docker | grep running)" ];then
+        echo "Docker not installed"
+        exit 1
+fi
+
 docker run -it -p 443:7000 --rm --name api-server $IMAGE_NAME
