@@ -9,14 +9,8 @@ if [ -z $IMAGE_NAME ]; then
 fi
 
 if [ ! -x "$(command -v docker)" ]; then
-    echo "Install docker"
-    sudo apt update
-    sudo apt install -y docker.io
-    sudo systemctl start docker.service
-    sudo systemctl enable docker.service
-    sudo groupadd docker
-    sudo usermod -aG docker ${USER}
-    newgrp docker
+    echo "Docker not installed"
+    exit 1
 fi
 
 echo "Remove old version"
