@@ -17,6 +17,6 @@ echo "Remove old version"
 docker rm $APP_NAME -f
 
 echo "Deploy application"
-docker run -d -p 443:7000 -p 80:7000 --rm --name $APP_NAME $IMAGE_NAME
+docker run -d -p 443:7000 -p 80:7000 --restart always --name $APP_NAME $IMAGE_NAME
 
 
