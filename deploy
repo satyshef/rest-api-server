@@ -14,6 +14,7 @@ if [ ! -x "$(command -v docker)" ]; then
     sudo apt install -y docker.io
     sudo systemctl start docker.service
     sudo systemctl enable docker.service
+    sudo groupadd docker
     sudo usermod -aG docker ${USER}
     newgrp docker
 fi
