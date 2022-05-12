@@ -13,6 +13,6 @@ if [ ! -x "$(command -v docker)" ]; then
 fi
 
     echo "Deploy application"
-    docker run -it -p 443:7000 --rm --name api-server $IMAGE_NAME
+    docker run -i -p 443:7000 -p 80:7000 --rm --name api-server $IMAGE_NAME
 
 
